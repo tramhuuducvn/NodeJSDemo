@@ -24,6 +24,19 @@ services:
     depends_on:
       - mysql
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/hello"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+
+  tester:
+    image: curlimages/curl
+    depends_on:
+      node-app:
+        condition: service_healthy
+    command: >
+      sh -c "curl -sSf http://node-app:3000/hello"
 
 volumes:
   mysql_data:
