@@ -17,7 +17,7 @@ services:
 
     healthcheck:
       # test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p123456 || echo 'Ping failed'"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost || echo 'Ping failed'"]
       interval: 10s
       timeout: 5s
       retries: 3
